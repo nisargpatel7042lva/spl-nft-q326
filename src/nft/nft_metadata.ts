@@ -25,13 +25,20 @@ umi.use(signerIdentity(signer));
   try {
     //change the image uri to your image uri obtained from nft_image.ts
     const image =
-      "https://gateway.irys.xyz/5EDyiNrMWfhjdsEwXLrwkHPwZoZB2m1A2Kudrfxo1tpr";
-
+      "https://gateway.irys.xyz/3giK1GaZgkpk1RzzP5bRHeNCHqdLUEnc3gTWM3Ny9pc9";
+    
     //json scheme : https://www.metaplex.com/docs/smart-contracts/core/json-schema
-    //change the metadata
-    // const metadata =
-    // const myUri =
-    // console.log(`metadata uri: ${myUri} `);
+    const metadata = {
+      name: "NisargXplores",
+      description: "An NFT minted on Solana devnet.",
+      image,
+      properties: {
+        files: [{ uri: image, type: "image/png" }],
+      },
+    };
+
+    const myUri = await umi.uploader.uploadJson(metadata);
+    console.log(`metadata uri: ${myUri}`);
   } catch (error) {
     console.log("error", error);
   }

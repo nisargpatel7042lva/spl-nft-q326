@@ -6,6 +6,7 @@ import {
 } from "@metaplex-foundation/umi";
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
 import { readFile } from "fs/promises";
+import path from "path";
 
 import wallet from "../../devnet-wallet.json";
 
@@ -26,14 +27,14 @@ umi.use(signerIdentity(signer));
 
 (async () => {
   try {
-    //chanege image path to your image path
-    const image = await readFile("file-path");
+    // Resolve the asset from this script's directory so the command works from any cwd.
+    const image = await readFile(path.join(__dirname, "nft pic.png"));
 
     //change the image name and mime type
-    // const file =
+    const file = createGenericFile(image, "NisargXplores.png", { contentType: "image/png" });
 
-    // const [myUri] =
-    // console.log("Your image URI: ", myUri);
+    const [myUri] = await umi.uploader.upload([file]);
+    console.log("Your image URI: ", myUri);
   } catch (error) {
     console.log(error);
   }
