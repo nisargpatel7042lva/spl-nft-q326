@@ -160,11 +160,7 @@ npm run test:watch  # watch mode
 
 ### Test results
 
-```
- Test Files  2 passed (2)
-      Tests  19 passed (19)
-   Duration  ~250ms
-```
+![All tests passing](src/image.png)
 
 ---
 
